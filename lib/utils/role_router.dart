@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pardarsh_application/model/user.dart';
 import '../screens/user/user_home_screen.dart';
 import '../screens/contractor/contractor_home_screen.dart';
+import '../screens/general_user/general_user_home_screen.dart';
 
 class RoleRouter extends StatelessWidget {
   final UserModel user;
@@ -10,13 +11,16 @@ class RoleRouter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    switch (user.role) {
-      case "Contractor":
-        return const ContractorHomeScreen();
-      case "Government Official":
-        return const UserHomeScreen(); // Replace with govt screen later
-      default:
-        return const UserHomeScreen();
+    // Use the helper methods from UserModel
+    if (user.isContractor) {
+      return const ContractorHomeScreen();
+    } else if (user.isGovernmentOfficial) {
+      return const UserHomeScreen(); // Government Official dashboard
+    } else if (user.isGeneralUser) {
+      return const GeneralUserHomeScreen();
+    } else {
+      // Default fallback
+      return const GeneralUserHomeScreen();
     }
   }
 }

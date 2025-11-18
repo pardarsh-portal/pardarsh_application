@@ -49,9 +49,9 @@ class _ReportUpdateScreenState extends State<ReportUpdateScreen> {
         const SnackBar(content: Text("Report submitted successfully")),
       );
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Error: $e")),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text("Error: $e")));
     } finally {
       setState(() => loading = false);
     }
@@ -67,19 +67,50 @@ class _ReportUpdateScreenState extends State<ReportUpdateScreen> {
           key: _formKey,
           child: ListView(
             children: [
-              TextFormField(controller: weekController, decoration: const InputDecoration(labelText: "Week Number"), keyboardType: TextInputType.number),
-              TextFormField(controller: progressController, decoration: const InputDecoration(labelText: "Progress Details")),
-              TextFormField(controller: completionController, decoration: const InputDecoration(labelText: "Completion %"), keyboardType: TextInputType.number),
+              TextFormField(
+                controller: weekController,
+                decoration: const InputDecoration(labelText: "Week Number"),
+                keyboardType: TextInputType.number,
+              ),
+              TextFormField(
+                controller: progressController,
+                decoration: const InputDecoration(
+                  labelText: "Progress Details",
+                ),
+              ),
+              TextFormField(
+                controller: completionController,
+                decoration: const InputDecoration(labelText: "Completion %"),
+                keyboardType: TextInputType.number,
+              ),
               const SizedBox(height: 16),
               Text("Expenses", style: Theme.of(context).textTheme.titleMedium),
-              TextFormField(controller: materialsController, decoration: const InputDecoration(labelText: "Materials"), keyboardType: TextInputType.number),
-              TextFormField(controller: laborController, decoration: const InputDecoration(labelText: "Labor"), keyboardType: TextInputType.number),
-              TextFormField(controller: equipmentController, decoration: const InputDecoration(labelText: "Equipment"), keyboardType: TextInputType.number),
-              TextFormField(controller: otherController, decoration: const InputDecoration(labelText: "Other"), keyboardType: TextInputType.number),
+              TextFormField(
+                controller: materialsController,
+                decoration: const InputDecoration(labelText: "Materials"),
+                keyboardType: TextInputType.number,
+              ),
+              TextFormField(
+                controller: laborController,
+                decoration: const InputDecoration(labelText: "Labor"),
+                keyboardType: TextInputType.number,
+              ),
+              TextFormField(
+                controller: equipmentController,
+                decoration: const InputDecoration(labelText: "Equipment"),
+                keyboardType: TextInputType.number,
+              ),
+              TextFormField(
+                controller: otherController,
+                decoration: const InputDecoration(labelText: "Other"),
+                keyboardType: TextInputType.number,
+              ),
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: loading ? null : _submit,
-                child: loading ? const CircularProgressIndicator(color: Colors.white) : const Text("Submit Report"),
+                child: loading
+                    ? const CircularProgressIndicator(color: Colors.white)
+                    : const Text("Submit Report"),
               ),
             ],
           ),

@@ -33,20 +33,23 @@ class ProjectReport {
 
   factory ProjectReport.fromJson(Map<String, dynamic> json) {
     return ProjectReport(
-      id: json['_id'],
-      projectId: json['projectId'],
-      contractorId: json['contractorId'],
-      weekNumber: json['weekNumber'],
-      weekStartDate: DateTime.parse(json['weekStartDate']),
-      materials: (json['expenses']['materials'] ?? 0).toDouble(),
-      labor: (json['expenses']['labor'] ?? 0).toDouble(),
-      equipment: (json['expenses']['equipment'] ?? 0).toDouble(),
-      other: (json['expenses']['other'] ?? 0).toDouble(),
-      progressDetails: json['progressDetails'],
-      completionPercentage: json['completionPercentage'],
-      challenges: json['challenges'],
-      nextWeekPlan: json['nextWeekPlan'],
-      status: json['status'],
+      id: json['_id']?.toString() ?? '',
+      projectId: json['projectId']?.toString() ?? '',
+      contractorId: json['contractorId']?.toString() ?? '',
+      weekNumber: (json['weekNumber'] as num?)?.toInt() ?? 0,
+      weekStartDate:
+          DateTime.tryParse(json['weekStartDate']?.toString() ?? '') ??
+          DateTime.now(),
+      materials: ((json['expenses']?['materials'] ?? 0) as num).toDouble(),
+      labor: ((json['expenses']?['labor'] ?? 0) as num).toDouble(),
+      equipment: ((json['expenses']?['equipment'] ?? 0) as num).toDouble(),
+      other: ((json['expenses']?['other'] ?? 0) as num).toDouble(),
+      progressDetails: json['progressDetails']?.toString() ?? '',
+      completionPercentage:
+          (json['completionPercentage'] as num?)?.toInt() ?? 0,
+      challenges: json['challenges']?.toString(),
+      nextWeekPlan: json['nextWeekPlan']?.toString(),
+      status: json['status']?.toString() ?? 'draft',
     );
   }
 }
