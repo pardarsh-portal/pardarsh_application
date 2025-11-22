@@ -6,6 +6,7 @@ import 'package:pardarsh_application/provider/contractor_provider.dart';
 import 'package:provider/provider.dart';
 import 'screens/splash_screen.dart';
 import 'utils/constants.dart';
+import 'theme/app_theme.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: appName,
-        theme: ThemeData(primarySwatch: Colors.blue),
+        theme: AppTheme.lightTheme,
         home: const SplashScreen(),
       ),
     );

@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:animate_do/animate_do.dart';
 import '../../provider/report_provider.dart';
+import '../../provider/project_provider.dart';
 import '../../model/report.dart';
+import '../../model/project.dart';
 import '../../widgets/custom_button.dart';
+import '../../theme/app_theme.dart';
 
 class EnhancedReportManagementScreen extends StatefulWidget {
-  final String projectId;
-  final String projectName;
+  final String? projectId;
+  final String? projectName;
 
   const EnhancedReportManagementScreen({
     super.key,
-    required this.projectId,
-    required this.projectName,
+    this.projectId,
+    this.projectName,
   });
 
   @override
@@ -23,17 +27,51 @@ class _EnhancedReportManagementScreenState
     extends State<EnhancedReportManagementScreen>
     with TickerProviderStateMixin {
   late TabController _tabController;
+  String? _selectedProjectId;
+  String? _selectedProjectName;
+  List<Project> _availableProjects = [];
 
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
+    _selectedProjectId = widget.projectId;
+    _selectedProjectName = widget.projectName;
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Provider.of<ReportProvider>(
-        context,
-        listen: false,
-      ).fetchReportsByProject(widget.projectId);
+      _loadInitialData();
     });
+  }
+
+  Future<void> _loadInitialData() async {
+    final projectProvider = Provider.of<ProjectProvider>(
+      context,
+      listen: false,
+    );
+    final reportProvider = Provider.of<ReportProvider>(context, listen: false);
+
+    try {
+      await projectProvider.fetchAssignedProjects();
+      setState(() {
+        _availableProjects = projectProvider.assignedProjects;
+        if (_selectedProjectId == null && _availableProjects.isNotEmpty) {
+          _selectedProjectId = _availableProjects.first.id;
+          _selectedProjectName = _availableProjects.first.name;
+        }
+      });
+
+      if (_selectedProjectId != null) {
+        await reportProvider.fetchReportsByProject(_selectedProjectId!);
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Error loading data: $e'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    }
   }
 
   @override
@@ -45,33 +83,276 @@ class _EnhancedReportManagementScreenState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [Color(0xFF667eea), Color(0xFF764ba2)],
+          ),
+        ),
+        child: SafeArea(
+          child: Column(
+            children: [
+              _buildHeader(context),
+              Expanded(
+                child: Container(
+                  margin: const EdgeInsets.only(top: 20),
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(30),
+                      topRight: Radius.circular(30),
+                    ),
+                  ),
+                  child: Column(
+                    children: [
+                      _buildProjectSelector(),
+                      _buildTabBar(),
+                      Expanded(
+                        child: TabBarView(
+                          controller: _tabController,
+                          children: [
+                            _buildReportsTab(),
+                            _buildCreateReportTab(),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildHeader(BuildContext context) {
+    return FadeInDown(
+      duration: const Duration(milliseconds: 800),
+      child: Padding(
+        padding: const EdgeInsets.all(24),
+        child: Row(
           children: [
-            const Text('Project Reports'),
-            Text(
-              widget.projectName,
-              style: const TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.normal,
+            IconButton(
+              onPressed: () => Navigator.pop(context),
+              icon: const Icon(Icons.arrow_back, color: Colors.white, size: 28),
+            ),
+            const SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Project Reports',
+                    style: TextStyle(
+                      color: Colors.white.withOpacity(0.9),
+                      fontSize: 16,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    _selectedProjectName ?? 'Select Project',
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: Colors.white.withOpacity(0.2),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: const Icon(
+                Icons.description,
+                color: Colors.white,
+                size: 24,
               ),
             ),
           ],
         ),
-        bottom: TabBar(
-          controller: _tabController,
-          tabs: const [
-            Tab(text: 'Reports', icon: Icon(Icons.description)),
-            Tab(text: 'Create Report', icon: Icon(Icons.add_box)),
+      ),
+    );
+  }
+
+  Widget _buildProjectSelector() {
+    if (_availableProjects.isEmpty) {
+      return const SizedBox.shrink();
+    }
+
+    return FadeInUp(
+      duration: const Duration(milliseconds: 800),
+      delay: const Duration(milliseconds: 200),
+      child: Container(
+        margin: const EdgeInsets.all(24),
+        padding: const EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(
+            colors: [Color(0xFFe3ffe7), Color(0xFFd9ffb3)],
+          ),
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: AppTheme.successColor.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: const Icon(
+                    Icons.assignment,
+                    color: AppTheme.successColor,
+                    size: 20,
+                  ),
+                ),
+                const SizedBox(width: 12),
+                const Text(
+                  'Select Project',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+            const SizedBox(height: 16),
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.05),
+                    blurRadius: 10,
+                    offset: const Offset(0, 5),
+                  ),
+                ],
+              ),
+              child: DropdownButtonFormField<String>(
+                value: _selectedProjectId,
+                decoration: const InputDecoration(
+                  border: InputBorder.none,
+                  contentPadding: EdgeInsets.all(16),
+                  hintText: 'Choose a project...',
+                ),
+                itemHeight: 48, // prevents overflow
+                isExpanded: true, // prevents horizontal overflow
+                items: _availableProjects.map((project) {
+                  return DropdownMenuItem<String>(
+                    value: project.id,
+                    child: Row(
+                      children: [
+                        const Icon(Icons.folder, size: 18, color: Colors.green),
+                        const SizedBox(width: 8),
+                        Expanded(
+                          child: Text(
+                            project.name,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 14,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                }).toList(),
+                onChanged: (value) {
+                  if (value != null) {
+                    final selectedProject = _availableProjects.firstWhere(
+                      (project) => project.id == value,
+                    );
+                    setState(() {
+                      _selectedProjectId = value;
+                      _selectedProjectName = selectedProject.name;
+                    });
+                    _loadReportsForProject(value);
+                  }
+                },
+              ),
+            ),
           ],
         ),
       ),
-      body: TabBarView(
-        controller: _tabController,
-        children: [_buildReportsTab(), _buildCreateReportTab()],
+    );
+  }
+
+  Widget _buildTabBar() {
+    return FadeInUp(
+      duration: const Duration(milliseconds: 800),
+      delay: const Duration(milliseconds: 400),
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 24),
+        decoration: BoxDecoration(
+          color: Colors.grey.withOpacity(0.1),
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: TabBar(
+          controller: _tabController,
+          indicatorSize: TabBarIndicatorSize.tab,
+          indicator: BoxDecoration(
+            gradient: AppTheme.primaryGradient,
+            borderRadius: BorderRadius.circular(12),
+          ),
+          labelColor: Colors.white,
+          unselectedLabelColor: Colors.grey.shade600,
+          labelStyle: const TextStyle(
+            fontWeight: FontWeight.w600,
+            fontSize: 14,
+          ),
+          tabs: [
+            Tab(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(Icons.description, size: 18),
+                  const SizedBox(width: 8),
+                  const Text('Reports'),
+                ],
+              ),
+            ),
+            Tab(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(Icons.add_box, size: 18),
+                  const SizedBox(width: 8),
+                  const Text('Create'),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
+  }
+
+  Future<void> _loadReportsForProject(String projectId) async {
+    try {
+      await Provider.of<ReportProvider>(
+        context,
+        listen: false,
+      ).fetchReportsByProject(projectId);
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Error loading reports: $e'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    }
   }
 
   Widget _buildReportsTab() {
@@ -112,7 +393,7 @@ class _EnhancedReportManagementScreenState
         }
 
         return RefreshIndicator(
-          onRefresh: () => provider.fetchReportsByProject(widget.projectId),
+          onRefresh: () => provider.fetchReportsByProject(widget.projectId!),
           child: ListView.builder(
             padding: const EdgeInsets.all(16),
             itemCount: provider.projectReports.length,
@@ -322,17 +603,61 @@ class _EnhancedReportManagementScreenState
   }
 
   Widget _buildCreateReportTab() {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.all(16),
-      child: ReportForm(
-        projectId: widget.projectId,
-        onSuccess: () {
-          _tabController.animateTo(0);
-          Provider.of<ReportProvider>(
-            context,
-            listen: false,
-          ).fetchReportsByProject(widget.projectId);
-        },
+    if (_selectedProjectId == null) {
+      return FadeInUp(
+        duration: const Duration(milliseconds: 800),
+        delay: const Duration(milliseconds: 600),
+        child: Container(
+          padding: const EdgeInsets.all(32),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                padding: const EdgeInsets.all(24),
+                decoration: BoxDecoration(
+                  color: Colors.blue.shade50,
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(
+                  Icons.assignment_outlined,
+                  size: 64,
+                  color: Colors.blue.shade400,
+                ),
+              ),
+              const SizedBox(height: 24),
+              Text(
+                'Select a Project First',
+                style: Theme.of(
+                  context,
+                ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                'Choose a project to create reports for',
+                style: TextStyle(color: Colors.grey.shade600, fontSize: 14),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    return FadeInUp(
+      duration: const Duration(milliseconds: 800),
+      delay: const Duration(milliseconds: 600),
+      child: SingleChildScrollView(
+        padding: const EdgeInsets.all(24),
+        child: ReportForm(
+          projectId: _selectedProjectId!,
+          onSuccess: () {
+            _tabController.animateTo(0);
+            Provider.of<ReportProvider>(
+              context,
+              listen: false,
+            ).fetchReportsByProject(_selectedProjectId!);
+          },
+        ),
       ),
     );
   }

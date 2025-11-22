@@ -156,6 +156,15 @@ class ContractorProvider extends ChangeNotifier {
     }
   }
 
+  Future<void> submitContractorReview(ContractorReview review) async {
+    await submitReview(
+      contractorId: review.contractorId,
+      rating: review.rating,
+      comment: review.comment,
+      projectId: review.projectId,
+    );
+  }
+
   Future<void> updateReview(
     String reviewId, {
     required double rating,

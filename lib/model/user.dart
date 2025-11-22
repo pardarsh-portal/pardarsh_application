@@ -29,7 +29,7 @@ class UserModel {
       email: json['email'] ?? '',
       role: json['role'] ?? '',
       legalName: json['legalName'],
-      phone: json['phone'],
+      phone: json['phoneNumber'],
       isActive: json['isActive'] ?? true,
       createdAt: json['createdAt'] != null
           ? DateTime.parse(json['createdAt'])

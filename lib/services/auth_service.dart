@@ -36,4 +36,28 @@ class AuthService {
   Future<void> logout() async {
     await SecureStorage.deleteToken();
   }
+
+  Future<UserModel> updateProfile(Map<String, dynamic> userData) async {
+    final token = await SecureStorage.readToken();
+    if (token == null) {
+      throw Exception('No authentication token found');
+    }
+
+    final data = await _api.put('/auth/profile', userData, customToken: token);
+    return UserModel.fromJson(data);
+  }
+
+  Future<UserModel> uploadProfilePicture(dynamic file) async {
+    final token = await SecureStorage.readToken();
+    if (token == null) {
+      throw Exception('No authentication token found');
+    }
+
+    // Note: This would typically use multipart upload
+    // For now, this is a placeholder implementation
+    final data = await _api.put('/auth/profile-picture', {
+      'profilePicture': file.toString(),
+    }, customToken: token);
+    return UserModel.fromJson(data);
+  }
 }

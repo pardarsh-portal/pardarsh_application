@@ -4,18 +4,16 @@ import 'package:pardarsh_application/model/project.dart';
 import 'package:pardarsh_application/services/project_service.dart';
 import '../../theme/app_theme.dart';
 
-class ContractorProjectDetailScreen extends StatefulWidget {
+class ProjectDetailScreen extends StatefulWidget {
   final String projectId;
 
-  const ContractorProjectDetailScreen({super.key, required this.projectId});
+  const ProjectDetailScreen({super.key, required this.projectId});
 
   @override
-  State<ContractorProjectDetailScreen> createState() =>
-      _ContractorProjectDetailScreenState();
+  State<ProjectDetailScreen> createState() => _ProjectDetailScreenState();
 }
 
-class _ContractorProjectDetailScreenState
-    extends State<ContractorProjectDetailScreen> {
+class _ProjectDetailScreenState extends State<ProjectDetailScreen> {
   Project? project;
   bool loading = true;
 
@@ -57,7 +55,13 @@ class _ContractorProjectDetailScreenState
                     ),
                   ),
                   child: loading || project == null
-                      ? const Center(child: CircularProgressIndicator())
+                      ? const Center(
+                          child: CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              AppTheme.primaryColor,
+                            ),
+                          ),
+                        )
                       : SingleChildScrollView(
                           padding: const EdgeInsets.all(24),
                           child: Column(
@@ -69,7 +73,7 @@ class _ContractorProjectDetailScreenState
                               const SizedBox(height: 24),
                               _buildDetailsCard(context),
                               const SizedBox(height: 24),
-                              _buildActionButtons(context),
+                              _buildContractorInfo(context),
                             ],
                           ),
                         ),
@@ -358,12 +362,93 @@ class _ContractorProjectDetailScreenState
               value: project!.createdBy,
               color: Colors.blue,
             ),
-            _buildDetailRow(
-              icon: Icons.engineering,
-              label: 'Contractor',
-              value: project!.contractorName ?? 'Not Assigned',
-              color: Colors.green,
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildContractorInfo(BuildContext context) {
+    return FadeInUp(
+      duration: const Duration(milliseconds: 800),
+      delay: const Duration(milliseconds: 800),
+      child: Container(
+        padding: const EdgeInsets.all(24),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              AppTheme.primaryColor.withOpacity(0.1),
+              AppTheme.primaryColor.withOpacity(0.05),
+            ],
+          ),
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(
+            color: AppTheme.primaryColor.withOpacity(0.2),
+            width: 1,
+          ),
+        ),
+        child: Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: AppTheme.primaryColor.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Icon(
+                Icons.engineering,
+                color: AppTheme.primaryColor,
+                size: 32,
+              ),
             ),
+            const SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Assigned Contractor',
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.grey.shade700,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    project!.contractorName ?? 'Not Assigned',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: project!.contractorName != null
+                          ? AppTheme.primaryColor
+                          : Colors.grey.shade600,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            if (project!.contractorName == null)
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 6,
+                ),
+                decoration: BoxDecoration(
+                  color: Colors.orange.shade100,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Text(
+                  'PENDING',
+                  style: TextStyle(
+                    color: Colors.orange.shade700,
+                    fontSize: 10,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
           ],
         ),
       ),
@@ -423,69 +508,6 @@ class _ContractorProjectDetailScreenState
     );
   }
 
-  Widget _buildActionButtons(BuildContext context) {
-    return FadeInUp(
-      duration: const Duration(milliseconds: 800),
-      delay: const Duration(milliseconds: 800),
-      child: Row(
-        children: [
-          Expanded(
-            child: ElevatedButton.icon(
-              onPressed: () {
-                // Navigate to reports screen with project context
-                Navigator.of(context).pushNamed(
-                  '/contractor/reports',
-                  arguments: {
-                    'projectId': project!.id,
-                    'projectName': project!.name,
-                  },
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppTheme.primaryColor,
-                foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-              ),
-              icon: const Icon(Icons.description),
-              label: const Text(
-                'View Reports',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-              ),
-            ),
-          ),
-          const SizedBox(width: 16),
-          ElevatedButton.icon(
-            onPressed: () {
-              // Add functionality for project updates
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text('Project updates feature coming soon!'),
-                  backgroundColor: AppTheme.successColor,
-                ),
-              );
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: AppTheme.successColor,
-              foregroundColor: Colors.white,
-              padding: const EdgeInsets.all(16),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-            ),
-            icon: const Icon(Icons.update),
-            label: const Text(
-              'Update',
-              style: TextStyle(fontWeight: FontWeight.w600),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
   Color _getStatusColor(String status) {
     switch (status.toLowerCase()) {
       case 'completed':
@@ -493,10 +515,11 @@ class _ContractorProjectDetailScreenState
       case 'in progress':
       case 'active':
         return Colors.blue;
+      case 'open':
       case 'pending':
         return Colors.orange;
       case 'cancelled':
-      case 'delayed':
+      case 'on hold':
         return Colors.red;
       default:
         return Colors.grey;
@@ -510,11 +533,12 @@ class _ContractorProjectDetailScreenState
       case 'in progress':
       case 'active':
         return Icons.play_circle;
+      case 'open':
       case 'pending':
         return Icons.pause_circle;
       case 'cancelled':
         return Icons.cancel;
-      case 'delayed':
+      case 'on hold':
         return Icons.warning;
       default:
         return Icons.info;

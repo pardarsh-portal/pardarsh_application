@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pardarsh_application/model/user.dart';
-import '../screens/user/user_home_screen.dart';
+import '../screens/government/user_home_screen.dart';
 import '../screens/contractor/contractor_home_screen.dart';
 import '../screens/general_user/general_user_home_screen.dart';
 

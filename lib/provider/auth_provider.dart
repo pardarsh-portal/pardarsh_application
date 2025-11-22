@@ -33,4 +33,28 @@ class AuthProvider extends ChangeNotifier {
     _user = null;
     notifyListeners();
   }
+
+  Future<void> updateProfile(Map<String, dynamic> userData) async {
+    _isLoading = true;
+    notifyListeners();
+
+    try {
+      _user = await _authService.updateProfile(userData);
+    } finally {
+      _isLoading = false;
+      notifyListeners();
+    }
+  }
+
+  Future<void> uploadProfilePicture(dynamic file) async {
+    _isLoading = true;
+    notifyListeners();
+
+    try {
+      _user = await _authService.uploadProfilePicture(file);
+    } finally {
+      _isLoading = false;
+      notifyListeners();
+    }
+  }
 }

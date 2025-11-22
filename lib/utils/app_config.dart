@@ -29,18 +29,18 @@ class AppConfig {
       case development:
         return const String.fromEnvironment(
           'DEV_API_URL',
-          defaultValue: 'http://localhost:5000/api',
+          defaultValue: 'https://pardarsh-backend.onrender.com/api',
         );
       case production:
         return const String.fromEnvironment(
           'PROD_API_URL',
-          defaultValue: 'https://api.pardarsh.com/api',
+          defaultValue: 'https://pardarsh-backend.onrender.com/api',
         );
       case staging:
       default:
         return const String.fromEnvironment(
           'STAGING_API_URL',
-          defaultValue: 'http://192.168.1.10:5000/api',
+          defaultValue: 'https://pardarsh-backend.onrender.com/api',
         );
     }
   }
