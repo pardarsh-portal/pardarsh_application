@@ -105,7 +105,7 @@ class _ContractorHomeScreenState extends State<ContractorHomeScreen> {
             _buildHomeAppBar(user),
             SliverToBoxAdapter(
               child: Padding(
-                padding: const EdgeInsets.all(20),
+                padding: const EdgeInsets.all(12),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

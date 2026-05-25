@@ -78,7 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
             child: SafeArea(
               child: Center(
                 child: SingleChildScrollView(
-                  padding: const EdgeInsets.all(24),
+                  padding: const EdgeInsets.all(16),
                   child: Form(
                     key: _formKey,
                     child: Column(
@@ -108,11 +108,11 @@ class _LoginScreenState extends State<LoginScreen> {
         children: [
           // Logo
           Container(
-            width: 100,
-            height: 100,
+            width: 88,
+            height: 88,
             decoration: BoxDecoration(
               color: Colors.white.withOpacity(0.2),
-              borderRadius: BorderRadius.circular(25),
+              borderRadius: BorderRadius.circular(12),
               border: Border.all(
                 color: Colors.white.withOpacity(0.3),
                 width: 2,
@@ -120,26 +120,26 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             child: const Icon(
               Icons.account_balance,
-              size: 50,
+              size: 44,
               color: Colors.white,
             ),
           ),
-          const SizedBox(height: 24),
+          const SizedBox(height: 16),
           // Welcome Text
           const Text(
             'Welcome Back',
             style: TextStyle(
-              fontSize: 32,
+              fontSize: 24,
               fontWeight: FontWeight.bold,
               color: Colors.white,
-              letterSpacing: 0.5,
+              letterSpacing: 0.3,
             ),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 6),
           Text(
             'Sign in to your account',
             style: TextStyle(
-              fontSize: 16,
+              fontSize: 14,
               color: Colors.white.withOpacity(0.8),
             ),
           ),
@@ -153,16 +153,16 @@ class _LoginScreenState extends State<LoginScreen> {
       duration: const Duration(milliseconds: 800),
       delay: const Duration(milliseconds: 200),
       child: Container(
-        padding: const EdgeInsets.all(24),
+        padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(8),
           color: Colors.white.withOpacity(0.15), // Glass look
           border: Border.all(color: Colors.white.withOpacity(0.3)),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.15),
-              blurRadius: 20,
-              offset: const Offset(0, 10),
+              color: Colors.black.withOpacity(0.08),
+              blurRadius: 12,
+              offset: const Offset(0, 6),
             ),
           ],
           // backdropFilter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
@@ -184,7 +184,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 filled: true,
                 fillColor: Colors.white.withOpacity(0.1),
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(14),
+                  borderRadius: BorderRadius.circular(8),
                   borderSide: BorderSide.none,
                 ),
               ),
@@ -231,7 +231,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 filled: true,
                 fillColor: Colors.white.withOpacity(0.1),
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(14),
+                  borderRadius: BorderRadius.circular(8),
                   borderSide: BorderSide.none,
                 ),
               ),
@@ -282,23 +282,23 @@ class _LoginScreenState extends State<LoginScreen> {
             const SizedBox(height: 24),
 
             /// LOGIN BUTTON
-            SizedBox(
+              SizedBox(
               width: double.infinity,
-              height: 56,
+              height: 48,
               child: ElevatedButton(
                 onPressed: authProvider.isLoading ? null : _login,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.white.withOpacity(0.95),
                   foregroundColor: AppTheme.primaryColor,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(14),
+                    borderRadius: BorderRadius.circular(6),
                   ),
-                  elevation: 4,
+                  elevation: 2,
                 ),
                 child: authProvider.isLoading
                     ? const SizedBox(
-                        width: 24,
-                        height: 24,
+                        width: 20,
+                        height: 20,
                         child: CircularProgressIndicator(
                           color: AppTheme.primaryColor,
                           strokeWidth: 2,
@@ -307,7 +307,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     : const Text(
                         'Sign In',
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 14,
                           fontWeight: FontWeight.w700,
                         ),
                       ),

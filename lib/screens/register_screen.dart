@@ -123,7 +123,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         child: SafeArea(
           child: Center(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.all(24),
+              padding: const EdgeInsets.all(16),
               child: Form(
                 key: _formKey,
                 child: Column(
@@ -151,34 +151,34 @@ class _RegisterScreenState extends State<RegisterScreen> {
         children: [
           // Logo
           Container(
-            width: 100,
-            height: 100,
+            width: 88,
+            height: 88,
             decoration: BoxDecoration(
               color: Colors.white.withOpacity(0.2),
-              borderRadius: BorderRadius.circular(25),
+              borderRadius: BorderRadius.circular(12),
               border: Border.all(
                 color: Colors.white.withOpacity(0.3),
                 width: 2,
               ),
             ),
-            child: const Icon(Icons.person_add, size: 50, color: Colors.white),
+            child: const Icon(Icons.person_add, size: 44, color: Colors.white),
           ),
-          const SizedBox(height: 24),
+          const SizedBox(height: 16),
           // Welcome Text
           const Text(
             'Create Account',
             style: TextStyle(
-              fontSize: 32,
+              fontSize: 24,
               fontWeight: FontWeight.bold,
               color: Colors.white,
-              letterSpacing: 0.5,
+              letterSpacing: 0.3,
             ),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 6),
           Text(
             'Join Pardarsh Portal today',
             style: TextStyle(
-              fontSize: 16,
+              fontSize: 14,
               color: Colors.white.withOpacity(0.8),
             ),
           ),
@@ -192,16 +192,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
       duration: const Duration(milliseconds: 800),
       delay: const Duration(milliseconds: 200),
       child: Container(
-        padding: const EdgeInsets.all(24),
+        padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(8),
           color: Colors.white.withOpacity(0.15), // Glass look
           border: Border.all(color: Colors.white.withOpacity(0.3)),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.15),
-              blurRadius: 20,
-              offset: const Offset(0, 10),
+              color: Colors.black.withOpacity(0.08),
+              blurRadius: 12,
+              offset: const Offset(0, 6),
             ),
           ],
         ),
@@ -274,7 +274,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 onTap: () => setState(() => _selectedRole = role['value']),
                 borderRadius: BorderRadius.circular(12),
                 child: Container(
-                  padding: const EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
                     border: Border.all(
                       color: isSelected
@@ -282,7 +282,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           : Colors.white.withOpacity(0.3),
                       width: isSelected ? 2 : 1,
                     ),
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(8),
                     color: isSelected
                         ? Colors.white.withOpacity(0.1)
                         : Colors.transparent,
@@ -290,15 +290,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   child: Row(
                     children: [
                       Container(
-                        padding: const EdgeInsets.all(8),
+                        padding: const EdgeInsets.all(6),
                         decoration: BoxDecoration(
                           color: Colors.white.withOpacity(0.2),
-                          borderRadius: BorderRadius.circular(8),
+                          borderRadius: BorderRadius.circular(6),
                         ),
                         child: Icon(
                           role['icon'],
                           color: Colors.white,
-                          size: 24,
+                          size: 22,
                         ),
                       ),
                       const SizedBox(width: 16),
@@ -372,7 +372,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             filled: true,
             fillColor: Colors.white.withOpacity(0.1),
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(14),
+              borderRadius: BorderRadius.circular(8),
               borderSide: BorderSide.none,
             ),
           ),
@@ -394,7 +394,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             filled: true,
             fillColor: Colors.white.withOpacity(0.1),
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(14),
+              borderRadius: BorderRadius.circular(8),
               borderSide: BorderSide.none,
             ),
           ),
@@ -423,7 +423,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             filled: true,
             fillColor: Colors.white.withOpacity(0.1),
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(14),
+              borderRadius: BorderRadius.circular(8),
               borderSide: BorderSide.none,
             ),
           ),
@@ -467,7 +467,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             filled: true,
             fillColor: Colors.white.withOpacity(0.1),
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(14),
+              borderRadius: BorderRadius.circular(8),
               borderSide: BorderSide.none,
             ),
           ),
@@ -492,7 +492,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             filled: true,
             fillColor: Colors.white.withOpacity(0.1),
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(14),
+              borderRadius: BorderRadius.circular(8),
               borderSide: BorderSide.none,
             ),
           ),
@@ -536,7 +536,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             filled: true,
             fillColor: Colors.white.withOpacity(0.1),
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(14),
+              borderRadius: BorderRadius.circular(8),
               borderSide: BorderSide.none,
             ),
           ),
@@ -573,7 +573,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             filled: true,
             fillColor: Colors.white.withOpacity(0.1),
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(14),
+              borderRadius: BorderRadius.circular(8),
               borderSide: BorderSide.none,
             ),
           ),
@@ -612,7 +612,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             filled: true,
             fillColor: Colors.white.withOpacity(0.1),
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(14),
+              borderRadius: BorderRadius.circular(8),
               borderSide: BorderSide.none,
             ),
           ),
@@ -633,20 +633,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
         if (_currentStep < 2)
           SizedBox(
             width: double.infinity,
-            height: 56,
+            height: 48,
             child: ElevatedButton(
               onPressed: _nextStep,
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.white.withOpacity(0.95),
                 foregroundColor: AppTheme.primaryColor,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(14),
+                  borderRadius: BorderRadius.circular(6),
                 ),
-                elevation: 4,
+                elevation: 2,
               ),
               child: const Text(
                 'Next',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
               ),
             ),
           ),
@@ -654,21 +654,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
         if (_currentStep == 2)
           SizedBox(
             width: double.infinity,
-            height: 56,
+            height: 48,
             child: ElevatedButton(
               onPressed: _isLoading ? null : _register,
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.white.withOpacity(0.95),
                 foregroundColor: AppTheme.primaryColor,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(14),
+                  borderRadius: BorderRadius.circular(6),
                 ),
-                elevation: 4,
+                elevation: 2,
               ),
               child: _isLoading
                   ? const SizedBox(
-                      width: 24,
-                      height: 24,
+                      width: 20,
+                      height: 20,
                       child: CircularProgressIndicator(
                         color: AppTheme.primaryColor,
                         strokeWidth: 2,
@@ -677,7 +677,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   : const Text(
                       'Create Account',
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 14,
                         fontWeight: FontWeight.w700,
                       ),
                     ),

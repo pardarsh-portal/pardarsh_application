@@ -78,7 +78,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           : RefreshIndicator(
               onRefresh: _loadDashboardData,
               child: SingleChildScrollView(
-                padding: const EdgeInsets.all(16),
+                padding: const EdgeInsets.all(12),
                 physics: const AlwaysScrollableScrollPhysics(),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -86,17 +86,17 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     // Welcome Section
                     Card(
                       child: Padding(
-                        padding: const EdgeInsets.all(16),
+                        padding: const EdgeInsets.all(12),
                         child: Row(
                           children: [
                             Icon(
                               widget.userRole == 'contractor'
                                   ? Icons.engineering
                                   : Icons.account_balance,
-                              size: 48,
+                              size: 36,
                               color: Theme.of(context).primaryColor,
                             ),
-                            const SizedBox(width: 16),
+                            const SizedBox(width: 12),
                             Expanded(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -122,24 +122,24 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 24),
+                    const SizedBox(height: 16),
 
                     // Project Statistics
                     const Text(
                       'Project Overview',
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 12),
 
                     GridView.count(
                       crossAxisCount: 2,
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
-                      crossAxisSpacing: 16,
-                      mainAxisSpacing: 16,
+                      crossAxisSpacing: 12,
+                      mainAxisSpacing: 12,
                       childAspectRatio: 0.9,
                       children: [
                         _buildStatCard(
@@ -168,7 +168,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 24),
+                    const SizedBox(height: 16),
 
                     // Report Statistics (for contractors)
                     if (widget.userRole == 'contractor') ...[

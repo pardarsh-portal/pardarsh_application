@@ -114,14 +114,14 @@ class _ProjectListScreenState extends State<ProjectListScreen> {
     return FadeInDown(
       duration: const Duration(milliseconds: 800),
       child: Padding(
-        padding: const EdgeInsets.all(24),
+        padding: const EdgeInsets.all(12),
         child: Row(
           children: [
             IconButton(
               onPressed: () => Navigator.pop(context),
-              icon: const Icon(Icons.arrow_back, color: Colors.white, size: 28),
+              icon: const Icon(Icons.arrow_back, color: Colors.white, size: 24),
             ),
-            const SizedBox(width: 16),
+            const SizedBox(width: 12),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -272,7 +272,7 @@ class _ProjectListScreenState extends State<ProjectListScreen> {
                       ),
                       decoration: BoxDecoration(
                         color: AppTheme.primaryColor.withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(8),
                         border: Border.all(
                           color: AppTheme.primaryColor.withOpacity(0.3),
                         ),
@@ -411,7 +411,7 @@ class _ProjectListScreenState extends State<ProjectListScreen> {
       margin: const EdgeInsets.only(bottom: 20),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(8),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.05),
@@ -432,9 +432,9 @@ class _ProjectListScreenState extends State<ProjectListScreen> {
               ),
             );
           },
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(8),
           child: Padding(
-            padding: const EdgeInsets.all(24),
+            padding: const EdgeInsets.all(12),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

@@ -31,7 +31,7 @@ class GradientCard extends StatelessWidget {
       margin: margin,
       decoration: BoxDecoration(
         gradient: AppTheme.primaryGradient,
-        borderRadius: borderRadius ?? BorderRadius.circular(12),
+        borderRadius: borderRadius ?? BorderRadius.circular(8),
         boxShadow: AppTheme.cardShadow,
       ),
       child: Material(
@@ -39,7 +39,7 @@ class GradientCard extends StatelessWidget {
         child: InkWell(
           onTap: onTap,
           borderRadius:
-              (borderRadius ?? BorderRadius.circular(12)) as BorderRadius?,
+              (borderRadius ?? BorderRadius.circular(8)) as BorderRadius?,
           child: Padding(
             padding: padding ?? const EdgeInsets.all(16),
             child: child,
@@ -74,10 +74,10 @@ class StatCard extends StatelessWidget {
 
     return Card(
       elevation: 2,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       child: InkWell(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(8),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
           child: Column(
@@ -89,7 +89,7 @@ class StatCard extends StatelessWidget {
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
                   color: cardColor.withOpacity(0.12),
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(6),
                 ),
                 child: Icon(icon, color: cardColor, size: 20),
               ),
@@ -228,10 +228,10 @@ class LoadingOverlay extends StatelessWidget {
             color: Colors.black.withOpacity(0.3),
             child: Center(
               child: Container(
-                padding: const EdgeInsets.all(24),
+                padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(8),
                 ),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
@@ -275,24 +275,24 @@ class EmptyStateWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
-        padding: const EdgeInsets.all(32),
+        padding: const EdgeInsets.all(24),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             if (icon != null) ...[
               Container(
-                padding: const EdgeInsets.all(24),
+                padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   color: AppTheme.primaryColor.withOpacity(0.1),
                   shape: BoxShape.circle,
                 ),
                 child: Icon(
                   icon!,
-                  size: 64,
+                  size: 48,
                   color: AppTheme.primaryColor.withOpacity(0.6),
                 ),
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 16),
             ],
             Text(
               title,
@@ -343,7 +343,7 @@ class StatusChip extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       decoration: BoxDecoration(
         color: color.withOpacity(0.1),
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(8),
         border: Border.all(color: color.withOpacity(0.3)),
       ),
       child: Row(
@@ -390,12 +390,12 @@ class CustomCard extends StatelessWidget {
       margin: margin ?? const EdgeInsets.symmetric(vertical: 4),
       elevation: elevation ?? 2,
       color: color,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       child: InkWell(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(8),
         child: Padding(
-          padding: padding ?? const EdgeInsets.all(16),
+          padding: padding ?? const EdgeInsets.all(12),
           child: child,
         ),
       ),

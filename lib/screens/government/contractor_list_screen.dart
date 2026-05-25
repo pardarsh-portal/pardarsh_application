@@ -82,14 +82,14 @@ class _ContractorListScreenState extends State<ContractorListScreen> {
     return FadeInDown(
       duration: const Duration(milliseconds: 800),
       child: Padding(
-        padding: const EdgeInsets.all(24),
+        padding: const EdgeInsets.all(12),
         child: Row(
           children: [
             IconButton(
               onPressed: () => Navigator.pop(context),
-              icon: const Icon(Icons.arrow_back, color: Colors.white, size: 28),
+              icon: const Icon(Icons.arrow_back, color: Colors.white, size: 24),
             ),
-            const SizedBox(width: 16),
+            const SizedBox(width: 12),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

@@ -269,7 +269,7 @@ class _PublicProjectsScreenState extends State<PublicProjectsScreen> {
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
       builder: (context) => Container(
-        padding: const EdgeInsets.all(24),
+        padding: const EdgeInsets.all(12),
         height: MediaQuery.of(context).size.height * 0.8,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

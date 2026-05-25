@@ -146,10 +146,10 @@ class _ProjectDetailScreenState extends State<ProjectDetailScreen> {
       duration: const Duration(milliseconds: 800),
       delay: const Duration(milliseconds: 200),
       child: Container(
-        padding: const EdgeInsets.all(24),
+        padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(8),
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.05),

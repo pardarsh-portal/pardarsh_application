@@ -66,11 +66,11 @@ class _NetworkStatusIndicatorState extends State<NetworkStatusIndicator> {
 
   Widget _buildNetworkIndicator() {
     if (_isChecking) {
-      return Container(
-        padding: const EdgeInsets.all(8),
+        return Container(
+        padding: const EdgeInsets.all(6),
         decoration: BoxDecoration(
           color: Colors.orange.withValues(alpha: 0.9),
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(8),
         ),
         child: const Row(
           mainAxisSize: MainAxisSize.min,
@@ -104,11 +104,11 @@ class _NetworkStatusIndicatorState extends State<NetworkStatusIndicator> {
 
     return GestureDetector(
       onTap: _checkNetworkStatus,
-      child: Container(
-        padding: const EdgeInsets.all(8),
+        child: Container(
+        padding: const EdgeInsets.all(6),
         decoration: BoxDecoration(
           color: color.withValues(alpha: 0.9),
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(8),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,

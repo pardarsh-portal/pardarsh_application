@@ -111,22 +111,22 @@ class _SplashScreenState extends State<SplashScreen>
                     return Transform.scale(
                       scale: _scaleAnimation.value,
                       child: Container(
-                        width: 120,
-                        height: 120,
-                        decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.2),
-                          borderRadius: BorderRadius.circular(30),
-                          border: Border.all(
-                            color: Colors.white.withOpacity(0.3),
-                            width: 2,
+                          width: 96,
+                          height: 96,
+                          decoration: BoxDecoration(
+                            color: Colors.white.withOpacity(0.2),
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(
+                              color: Colors.white.withOpacity(0.3),
+                              width: 2,
+                            ),
+                          ),
+                          child: const Icon(
+                            Icons.account_balance,
+                            size: 48,
+                            color: Colors.white,
                           ),
                         ),
-                        child: const Icon(
-                          Icons.account_balance,
-                          size: 60,
-                          color: Colors.white,
-                        ),
-                      ),
                     );
                   },
                 ),
@@ -145,10 +145,10 @@ class _SplashScreenState extends State<SplashScreen>
                       child: const Text(
                         'Pardarsh Portal',
                         style: TextStyle(
-                          fontSize: 32,
+                          fontSize: 24,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
-                          letterSpacing: 1.2,
+                          letterSpacing: 1.0,
                         ),
                       ),
                     );
@@ -169,9 +169,9 @@ class _SplashScreenState extends State<SplashScreen>
                       child: Text(
                         'Government Project Management',
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 14,
                           color: Colors.white.withOpacity(0.9),
-                          letterSpacing: 0.5,
+                          letterSpacing: 0.3,
                         ),
                       ),
                     );
@@ -192,10 +192,10 @@ class _SplashScreenState extends State<SplashScreen>
                       child: Column(
                         children: [
                           SizedBox(
-                            width: 40,
-                            height: 40,
+                            width: 32,
+                            height: 32,
                             child: CircularProgressIndicator(
-                              strokeWidth: 3,
+                              strokeWidth: 2,
                               valueColor: AlwaysStoppedAnimation<Color>(
                                 Colors.white.withOpacity(0.8),
                               ),
@@ -216,7 +216,7 @@ class _SplashScreenState extends State<SplashScreen>
                 ),
               ),
 
-              const SizedBox(height: 100),
+              const SizedBox(height: 64),
 
               // Version/Copyright Info
               FadeInUp(

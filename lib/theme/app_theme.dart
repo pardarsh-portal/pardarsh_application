@@ -60,64 +60,64 @@ class AppTheme {
     textTheme: GoogleFonts.interTextTheme(
       const TextTheme(
         displayLarge: TextStyle(
-          fontSize: 32,
+          fontSize: 30,
           fontWeight: FontWeight.bold,
           color: textPrimary,
           letterSpacing: -0.5,
         ),
         displayMedium: TextStyle(
-          fontSize: 28,
+          fontSize: 26,
           fontWeight: FontWeight.bold,
           color: textPrimary,
           letterSpacing: -0.5,
         ),
         displaySmall: TextStyle(
-          fontSize: 24,
-          fontWeight: FontWeight.w600,
-          color: textPrimary,
-        ),
-        headlineLarge: TextStyle(
           fontSize: 22,
           fontWeight: FontWeight.w600,
           color: textPrimary,
         ),
-        headlineMedium: TextStyle(
+        headlineLarge: TextStyle(
           fontSize: 20,
           fontWeight: FontWeight.w600,
           color: textPrimary,
         ),
-        headlineSmall: TextStyle(
+        headlineMedium: TextStyle(
           fontSize: 18,
           fontWeight: FontWeight.w600,
           color: textPrimary,
         ),
-        titleLarge: TextStyle(
+        headlineSmall: TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.w600,
           color: textPrimary,
         ),
+        titleLarge: TextStyle(
+          fontSize: 15,
+          fontWeight: FontWeight.w600,
+          color: textPrimary,
+        ),
         titleMedium: TextStyle(
-          fontSize: 14,
+          fontSize: 13,
           fontWeight: FontWeight.w500,
           color: textPrimary,
         ),
         titleSmall: TextStyle(
-          fontSize: 12,
+          fontSize: 11,
           fontWeight: FontWeight.w500,
           color: textSecondary,
         ),
         bodyLarge: TextStyle(
-          fontSize: 16,
+          fontSize: 14,
           fontWeight: FontWeight.normal,
           color: textPrimary,
         ),
         bodyMedium: TextStyle(
-          fontSize: 14,
+          fontSize: 13,
           fontWeight: FontWeight.normal,
           color: textSecondary,
         ),
         bodySmall: TextStyle(
-          fontSize: 12,
+          fontSize: 11,
           fontWeight: FontWeight.normal,
           color: textTertiary,
         ),
@@ -141,21 +141,21 @@ class AppTheme {
     // Card Theme
     cardTheme: CardThemeData(
       color: cardColor,
-      elevation: 2,
-      shadowColor: Colors.black.withOpacity(0.1),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      elevation: 1,
+      shadowColor: Colors.black.withOpacity(0.05),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
     ),
 
-    // Elevated Button Theme
+    // Elevated Button Theme (more compact, less rounded)
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         backgroundColor: primaryColor,
         foregroundColor: Colors.white,
-        elevation: 2,
-        shadowColor: primaryColor.withOpacity(0.3),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-        textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+        elevation: 1,
+        shadowColor: primaryColor.withOpacity(0.15),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        textStyle: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
       ),
     ),
 
@@ -163,8 +163,8 @@ class AppTheme {
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
         foregroundColor: primaryColor,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
       ),
     ),
 
@@ -173,33 +173,33 @@ class AppTheme {
       style: OutlinedButton.styleFrom(
         foregroundColor: primaryColor,
         side: const BorderSide(color: primaryColor),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       ),
     ),
 
-    // Input Decoration Theme
+    // Input Decoration Theme (compact inputs)
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
       fillColor: Colors.grey[50],
       border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(4),
         borderSide: BorderSide(color: Colors.grey[300]!),
       ),
       enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(4),
         borderSide: BorderSide(color: Colors.grey[300]!),
       ),
       focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(4),
         borderSide: const BorderSide(color: primaryColor, width: 2),
       ),
       errorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(4),
         borderSide: const BorderSide(color: errorColor),
       ),
-      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-      hintStyle: const TextStyle(color: textTertiary),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+      hintStyle: const TextStyle(color: textTertiary, fontSize: 13),
     ),
 
     // Bottom Navigation Bar Theme
@@ -224,36 +224,36 @@ class AppTheme {
       shape: CircleBorder(),
     ),
 
-    // Chip Theme
+    // Chip Theme (less rounded, compact)
     chipTheme: ChipThemeData(
       backgroundColor: Colors.grey[100],
       disabledColor: Colors.grey[200],
-      selectedColor: primaryColor.withOpacity(0.1),
-      secondarySelectedColor: secondaryColor.withOpacity(0.1),
-      labelStyle: const TextStyle(color: textSecondary),
-      secondaryLabelStyle: const TextStyle(color: textSecondary),
+      selectedColor: primaryColor.withOpacity(0.08),
+      secondarySelectedColor: secondaryColor.withOpacity(0.08),
+      labelStyle: const TextStyle(color: textSecondary, fontSize: 13),
+      secondaryLabelStyle: const TextStyle(color: textSecondary, fontSize: 13),
       brightness: Brightness.light,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
     ),
 
-    // Dialog Theme
+    // Dialog Theme (tighter, less rounded)
     dialogTheme: DialogThemeData(
       backgroundColor: Colors.white,
-      elevation: 8,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      elevation: 4,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       titleTextStyle: const TextStyle(
-        fontSize: 20,
+        fontSize: 18,
         fontWeight: FontWeight.w600,
         color: textPrimary,
       ),
-      contentTextStyle: const TextStyle(fontSize: 16, color: textSecondary),
+      contentTextStyle: const TextStyle(fontSize: 14, color: textSecondary),
     ),
 
     // Snack Bar Theme
     snackBarTheme: SnackBarThemeData(
       backgroundColor: textPrimary,
-      contentTextStyle: const TextStyle(color: Colors.white, fontSize: 14),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+      contentTextStyle: const TextStyle(color: Colors.white, fontSize: 13),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
       behavior: SnackBarBehavior.floating,
     ),
   );
@@ -266,7 +266,7 @@ class AppTheme {
   // Custom Decorations
   static BoxDecoration get cardDecoration => BoxDecoration(
     color: Colors.white,
-    borderRadius: BorderRadius.circular(12),
+    borderRadius: BorderRadius.circular(6),
     boxShadow: [
       BoxShadow(
         color: Colors.black.withOpacity(0.05),
@@ -278,7 +278,7 @@ class AppTheme {
 
   static BoxDecoration get gradientDecoration => const BoxDecoration(
     gradient: primaryGradient,
-    borderRadius: BorderRadius.all(Radius.circular(12)),
+    borderRadius: BorderRadius.all(Radius.circular(6)),
   );
 
   // Custom Shadows

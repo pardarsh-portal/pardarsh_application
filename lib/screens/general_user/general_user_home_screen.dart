@@ -55,15 +55,15 @@ class GeneralUserHomeScreen extends StatelessWidget {
                   decoration: const BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(30),
-                      topRight: Radius.circular(30),
+                      topLeft: Radius.circular(12),
+                      topRight: Radius.circular(12),
                     ),
                   ),
                   child: Column(
                     children: [
                       _buildQuickStats(),
                       Expanded(child: _buildNavigationGrid(context)),
-                      _buildFooter(),
+                      // _buildFooter(),
                     ],
                   ),
                 ),
@@ -79,7 +79,7 @@ class GeneralUserHomeScreen extends StatelessWidget {
     return FadeInDown(
       duration: const Duration(milliseconds: 800),
       child: Padding(
-        padding: const EdgeInsets.all(24),
+        padding: const EdgeInsets.all(16),
         child: Row(
           children: [
             Expanded(
@@ -90,15 +90,15 @@ class GeneralUserHomeScreen extends StatelessWidget {
                     'Welcome Back,',
                     style: TextStyle(
                       color: Colors.white.withOpacity(0.9),
-                      fontSize: 16,
+                      fontSize: 14,
                     ),
                   ),
-                  const SizedBox(height: 4),
+                  const SizedBox(height: 2),
                   Text(
                     user?.legalName ?? 'Citizen',
                     style: const TextStyle(
                       color: Colors.white,
-                      fontSize: 24,
+                      fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -110,7 +110,7 @@ class GeneralUserHomeScreen extends StatelessWidget {
                     ),
                     decoration: BoxDecoration(
                       color: Colors.white.withOpacity(0.2),
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(8),
                     ),
                     child: Text(
                       'General User',
@@ -139,7 +139,7 @@ class GeneralUserHomeScreen extends StatelessWidget {
       duration: const Duration(milliseconds: 800),
       delay: const Duration(milliseconds: 200),
       child: Padding(
-        padding: const EdgeInsets.all(24),
+        padding: const EdgeInsets.all(12),
         child: Row(
           children: [
             Expanded(
@@ -150,7 +150,7 @@ class GeneralUserHomeScreen extends StatelessWidget {
                 color: AppTheme.primaryColor,
               ),
             ),
-            const SizedBox(width: 16),
+            const SizedBox(width: 8),
             Expanded(
               child: _buildStatCard(
                 icon: Icons.engineering,
@@ -159,7 +159,7 @@ class GeneralUserHomeScreen extends StatelessWidget {
                 color: AppTheme.successColor,
               ),
             ),
-            const SizedBox(width: 16),
+            const SizedBox(width: 8),
             Expanded(
               child: _buildStatCard(
                 icon: Icons.rate_review,
@@ -181,30 +181,30 @@ class GeneralUserHomeScreen extends StatelessWidget {
     required Color color,
   }) {
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: color.withOpacity(0.1),
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(8),
         border: Border.all(color: color.withOpacity(0.3), width: 1),
       ),
       child: Column(
         children: [
-          Icon(icon, color: color, size: 24),
-          const SizedBox(height: 8),
+          Icon(icon, color: color, size: 20),
+          const SizedBox(height: 6),
           Text(
             value,
             style: TextStyle(
               color: color,
-              fontSize: 18,
+              fontSize: 16,
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(height: 4),
+          const SizedBox(height: 2),
           Text(
             title,
             style: TextStyle(
               color: color.withOpacity(0.8),
-              fontSize: 12,
+              fontSize: 11,
               fontWeight: FontWeight.w500,
             ),
           ),
@@ -218,11 +218,11 @@ class GeneralUserHomeScreen extends StatelessWidget {
       duration: const Duration(milliseconds: 800),
       delay: const Duration(milliseconds: 400),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
+        padding: const EdgeInsets.symmetric(horizontal: 12),
         child: GridView.count(
           crossAxisCount: 2,
-          crossAxisSpacing: 16,
-          mainAxisSpacing: 16,
+          crossAxisSpacing: 12,
+          mainAxisSpacing: 12,
           childAspectRatio: 0.8,
           children: [
             _buildEnhancedNavigationCard(
@@ -283,42 +283,42 @@ class GeneralUserHomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildFooter() {
-    return FadeInUp(
-      duration: const Duration(milliseconds: 800),
-      delay: const Duration(milliseconds: 600),
-      child: Container(
-        margin: const EdgeInsets.all(24),
-        padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          color: AppTheme.primaryColor.withOpacity(0.05),
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: AppTheme.primaryColor.withOpacity(0.1)),
-        ),
-        child: Column(
-          children: [
-            Icon(Icons.info_outline, color: AppTheme.primaryColor, size: 32),
-            const SizedBox(height: 12),
-            const Text(
-              'Promoting Government Transparency',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 8),
-            Text(
-              'Access public project information, rate contractor performance, and contribute to government accountability.',
-              style: TextStyle(
-                color: Colors.grey.shade600,
-                fontSize: 12,
-                height: 1.4,
-              ),
-              textAlign: TextAlign.center,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+  // Widget _buildFooter() {
+  //   return FadeInUp(
+  //     duration: const Duration(milliseconds: 800),
+  //     delay: const Duration(milliseconds: 600),
+  //     child: Container(
+  //       margin: const EdgeInsets.all(24),
+  //       padding: const EdgeInsets.all(20),
+  //       decoration: BoxDecoration(
+  //         color: AppTheme.primaryColor.withOpacity(0.05),
+  //         borderRadius: BorderRadius.circular(16),
+  //         border: Border.all(color: AppTheme.primaryColor.withOpacity(0.1)),
+  //       ),
+  //       child: Column(
+  //         children: [
+  //           Icon(Icons.info_outline, color: AppTheme.primaryColor, size: 32),
+  //           const SizedBox(height: 12),
+  //           const Text(
+  //             'Promoting Government Transparency',
+  //             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+  //             textAlign: TextAlign.center,
+  //           ),
+  //           const SizedBox(height: 8),
+  //           Text(
+  //             'Access public project information, rate contractor performance, and contribute to government accountability.',
+  //             style: TextStyle(
+  //               color: Colors.grey.shade600,
+  //               fontSize: 12,
+  //               height: 1.4,
+  //             ),
+  //             textAlign: TextAlign.center,
+  //           ),
+  //         ],
+  //       ),
+  //     ),
+  //   );
+  // }
 
   Widget _buildEnhancedNavigationCard(
     BuildContext context, {
@@ -333,7 +333,7 @@ class GeneralUserHomeScreen extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           gradient: gradient,
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(8),
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.1),
@@ -343,17 +343,17 @@ class GeneralUserHomeScreen extends StatelessWidget {
           ],
         ),
         child: Padding(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.all(12),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(icon, color: Colors.white, size: 40),
-              const SizedBox(height: 12),
+              Icon(icon, color: Colors.white, size: 32),
+              const SizedBox(height: 8),
               Text(
                 title,
                 style: const TextStyle(
                   color: Colors.white,
-                  fontSize: 16,
+                  fontSize: 14,
                   fontWeight: FontWeight.bold,
                 ),
                 textAlign: TextAlign.center,

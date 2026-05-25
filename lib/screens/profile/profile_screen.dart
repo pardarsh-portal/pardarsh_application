@@ -63,16 +63,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ],
           ),
           body: SingleChildScrollView(
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.all(12),
             child: Column(
               children: [
                 // Profile Header
                 Container(
                   width: double.infinity,
-                  padding: const EdgeInsets.all(24),
+                  padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.circular(8),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.black.withOpacity(0.05),
@@ -109,7 +109,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Text(
                         user.legalName ?? user.email.split('@')[0],
                         style: const TextStyle(
-                          fontSize: 22,
+                          fontSize: 18,
                           fontWeight: FontWeight.bold,
                           color: Colors.black87,
                         ),
@@ -119,7 +119,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Text(
                         user.email,
                         style: TextStyle(
-                          fontSize: 14,
+                          fontSize: 13,
                           color: Colors.grey.shade600,
                         ),
                       ),
